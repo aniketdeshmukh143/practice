@@ -1,23 +1,43 @@
-import logo from './logo.svg';
+import React,{useEffect} from 'react';
+import { useDispatch } from 'react-redux';
 import './App.css';
+// import { fetchApiCall, fetchApiFail, fetchApiSuccess } from './Redux/Reducer/Reducer';
+import {fetchAllUser} from './Redux/AsyncApi/AsyncAPI';
+import MainComponents from './Components/MainComponents/MainComponents';
+import LoaderBackdrop from './OtherComponents/LoaderBackdrop';
 
 function App() {
+  // const userState =  useSelector((state)=> state.userData)
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+    dispatch(fetchAllUser(1))
+  }, [dispatch])
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      <LoaderBackdrop/>
+      <MainComponents/>
+      {/* <br></br>
+      <button
+          aria-label="fetchApiCall"
+          onClick={() => dispatch(fetchApiCall())}
         >
-          Learn React
-        </a>
-      </header>
+          fetchApiCall
+        </button>
+        <button
+          aria-label="fetchApiSuccess"
+          onClick={() => dispatch(fetchApiSuccess([{data:"newData"}]))}
+        >
+          fetchApiSuccess
+        </button>
+        <button
+          aria-label="fetchApiFail"
+          onClick={() => dispatch(fetchApiFail("error ocured"))}
+        >
+          fetchApiFail
+        </button> */}
     </div>
   );
 }
